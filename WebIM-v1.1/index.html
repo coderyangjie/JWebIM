@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jWebIM实例</title>
+    <link rel="stylesheet" href="css/im.css">
+    <script type="text/javascript" src="js/jQuery-1.7.1.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/artDialog-v4.1.7/artDialog.source.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/artDialog-v4.1.7/plugins/iframeTools.source.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/jQuery.im.core.js" charset="UTF-8"></script>
+</head>
+<body>
+<script type="text/javascript">
+    $(function() {
+        $(document).JWebIM({
+            autoLogin          :true,      //boolean型，默认是否自动登录，true：自动登录，false：手动登录，默认为true
+            msgRefreshTime    :1000,       //number型，消息刷新时间，单位为ms
+            friendRefreshTime :10000,     //number型，好友刷新时间，单位为ms
+            showSecretary     :true,      //boolean型，默认是否显示小秘书，true：显示，false：不显示，默认为true
+            noticeContent     :"唐僧师徒历经千辛万苦，终于见到了佛祖……",        //string型，公告内容 为空时不显示公告
+            sendPicture       :true,      //boolean型，是否允许发送图片，true：允许，false：不允许，默认为true
+            msgMaxSize        :300,        //number型，单条消息最大允许字符
+            msgSound           :false,     //boolean型，是否开启声音提醒，true：开启，false:关闭，默认为true
+            defaultWindow     :""   //string型，登录后打开新聊天窗口，此处接收的参数为联系人的uid，否则会出错
+        });
+    });
+</script>
+</body>
+</html>
