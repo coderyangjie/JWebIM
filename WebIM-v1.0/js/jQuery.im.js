@@ -45,7 +45,7 @@
                                     var uid=$(this).attr("uid");
                                     $.ajax({url:"ajax/im_window.html",dataType:"html",success:function(data){
                                         var uid=$(this).attr("uid");
-                                        $.getJSON("ajax/userinfo.php?uid="+uid,function(json){
+                                        $.getJSON("data/userinfo.json?uid="+uid,function(json){
                                             //打开新窗口
                                             openWindow(json[0].cid,json[0].UID,json[0].isOnline,json[0].UserAvatar,json[0].cname,json[0].UserName,data);
                                         });
@@ -169,7 +169,7 @@
                         //加载聊天窗口
                         $.ajax({url:"ajax/im_window.html",dataType:"html",success:function(data){
                             if(options.defaultWindow!=""){
-                                $.getJSON("ajax/userinfo.php?uid="+options.defaultWindow,function(json){
+                                $.getJSON("data/userinfo.json?uid="+options.defaultWindow,function(json){
                                     //打开新窗口
                                     openWindow(json[0].cid,json[0].UID,json[0].isOnline,json[0].UserAvatar,json[0].cname,json[0].UserName,data);
                                 });
@@ -183,7 +183,7 @@
                                 //阻止全选
                                 this.onselectstart=function(){return false};
                                 var uid=$(this).attr("uid");
-                                $.getJSON("ajax/userinfo.php?uid="+uid,function(json){
+                                $.getJSON("data/userinfo.json?uid="+uid,function(json){
                                     //打开新窗口
                                     openWindow(json[0].cid,json[0].UID,json[0].isOnline,json[0].UserAvatar,json[0].cname,json[0].UserName,data);
                                 });
@@ -204,9 +204,9 @@
                         $("#imRencentContacts,#imFriends").html("");
                         //凡纳小秘书
                         if(options.showSecretary){
-                            $("#imFriends").append('<div class="im_contact online"  uid=""><i><img src="../img/avatar_s-sys.png" width="30" height="30" /><sup></sup></i><span>凡纳小秘书</span><a href="#" target="_blank"></a></div>');
+                            $("#imFriends").append('<div class="im_contact online"  uid=""><i><img src="img/avatar_s-sys.png" width="30" height="30" /><sup></sup></i><span>凡纳小秘书</span><a href="#" target="_blank"></a></div>');
                         }
-                        $.getJSON("ajax/friends.php",function(json){
+                        $.getJSON("data/friends.json",function(json){
                             for(var i=0;i<json[0].RencentContacts.length;i++){
                                 $("#imRencentContacts").append('<div class="im_contact '+json[0].RencentContacts[i].o+'" uid="'+json[0].RencentContacts[i].uid+'"><i><img src="'+json[0].RencentContacts[i].a+'" width="30" height="30" /><sup></sup></i><span>'+json[0].RencentContacts[i].n+'</span><a href="'+json[0].RencentContacts[i].h+'" target="_blank"></a></div>');
                                 if(json[0].RencentContacts[i].m!=0){
@@ -248,7 +248,7 @@
                     }
                     /****加载聊天记录****/
                     function msgList(){
-                        $.getJSON("ajax/chats.php",function(json){
+                        $.getJSON("data/chats.json",function(json){
                             $.each(json,function(i){
                                 if(json[i].T=="0"){
                                     $(".im_chats .im_chat_content:last").after('<div class="im_chat_content"><i>'+json[i].D+'</i><div class="im_chat_txt">'+json[i].M+'</div></div>');
@@ -391,7 +391,7 @@
                             $("a.im_aemptyrecords").click(function(){
                                 art.confirm("您确定清空与该好友的聊天记录吗？",function(){
                                     //清空聊天记录
-                                    $.post('ajax/chats.php', function(data) {
+                                    $.post('data/chats.json', function(data) {
                                         //重新加载聊天内容
                                         $(".im_chats .im_chat_content:gt(0)").remove();
                                         msgList();
